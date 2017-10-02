@@ -13,7 +13,7 @@ function ClozeFlashcard(text, cloze) {
             clozeDeleted: this.clozeDeleted,
             type: "cloze"
         };
-        fs.appendFile("log.txt", JSON.stringify(data) + ';', "utf8", function(error) {
+        fs.appendFile("questions.txt", JSON.stringify(data) + ';', "utf8", function(error) {
             if (error) {
                 console.log(error);
             }

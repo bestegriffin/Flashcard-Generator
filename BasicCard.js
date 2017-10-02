@@ -11,7 +11,7 @@ function BasicFlashcard(front, back) {
             back: this.back,
             type: "basic",
         };
-        fs.appendFile("log.txt", JSON.stringify(data) + ';', "utf8", function(error) {
+        fs.appendFile("questions.txt", JSON.stringify(data) + ';', "utf8", function(error) {
             if (error) {
                 console.log(error);
             }

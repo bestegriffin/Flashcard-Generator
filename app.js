@@ -22,7 +22,6 @@ inquirer.prompt([{
 });
 
 var addCard = function() {
-    // get user input
     inquirer.prompt([{
         name: 'cardType',
         message: 'What kind of flashcard would you like to create?',
@@ -32,31 +31,18 @@ var addCard = function() {
         }, {
             name: 'cloze-flashcard'
         }]
-    // once user input is received
     }]).then(function(answer) {
         if (answer.cardType === 'basic-flashcard') {
             inquirer.prompt([{
                 name: 'front',
                 message: 'What is the question?',
                 validate: function(input) {
-                    if (input === '') {
-                        console.log('Please provide a question');
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
+                        return true;}
             }, {
                 name: 'back',
                 message: 'What is the answer?',
                 validate: function(input) {
-                    if (input === '') {
-                        console.log('Please provide an answer');
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
+                        return true;}
             }]).then(function(answer) {
                 var newBasic = new BasicFlashcard(answer.front, answer.back);
                 newBasic.create();
@@ -67,23 +53,12 @@ var addCard = function() {
                 name: 'text',
                 message: 'What is the full text?',
                 validate: function(input) {
-                    if (input === '') {
-                        console.log('Please provide the full text');
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
+                        return true;}
             }, {
                 name: 'cloze',
                 message: 'What is the cloze portion?',
                 validate: function(input) {
-                    if (input === '') {
-                        console.log('Please provide the cloze portion');
-                        return false;
-                    } else {
                         return true;
-                    }
                 }
             }]).then(function(answer) {
                 var text = answer.text;
@@ -92,9 +67,6 @@ var addCard = function() {
                     var newCloze = new ClozeFlashcard(text, cloze);
                     newCloze.create();
                     whatsNext();
-                } else {
-                    console.log('The cloze portion you provided is not found in the full text. Please try again.');
-                    addCard();
                 }
             });
         }
@@ -127,8 +99,7 @@ var whatsNext = function() {
 };
 
 var showCards = function() {
-    // read the log.txt file
-    fs.readFile('./log.txt', 'utf8', function(error, data) {
+    fs.readFile('./questions.txt', 'utf8', function(error, data) {
         //if there is an error, log it
         if (error) {
             console.log('Error occurred: ' + error);
