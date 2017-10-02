@@ -86,7 +86,6 @@ var whatsNext = function() {
         }, {
             name: 'nothing'
         }]
-    // once user input is received
     }]).then(function(answer) {
         if (answer.nextAction === 'create-new-card') {
             addCard();
@@ -100,7 +99,7 @@ var whatsNext = function() {
 
 var showCards = function() {
     fs.readFile('./questions.txt', 'utf8', function(error, data) {
-        //if there is an error, log it
+    
         if (error) {
             console.log('Error occurred: ' + error);
         }
